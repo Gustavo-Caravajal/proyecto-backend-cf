@@ -17,4 +17,13 @@
 - python manage.py makemigrations
 
 ### Correr servidor
--- python manage.py runserver
+- python manage.py runserver
+
+### Para crear un super usuario y acceder al admin:
+
+- python manage.py createsuperuser 
+
+
+### Para conectar a la base de datos:
+
+- pip install pymysql
