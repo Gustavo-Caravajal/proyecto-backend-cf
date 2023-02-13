@@ -17,4 +17,4 @@
 - python manage.py makemigrations
 
 ### Correr servidor
--- python manage.py makemigrations
+-- python manage.py runserver
