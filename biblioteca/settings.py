@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'autores',
     'editoriales',
     'libros',
+    'rest_framework',
 
 ]
 

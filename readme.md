@@ -23,7 +23,10 @@
 
 - python manage.py createsuperuser 
 
-
 ### Para conectar a la base de datos:
 
 - pip install pymysql
+
+### Para instalar django rest framework
+
+- pip install djangorestframework
