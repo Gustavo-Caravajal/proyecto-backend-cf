@@ -3,16 +3,19 @@ from rest_framework.decorators import api_view
 from editoriales.models import Editorial
 from editoriales.serializers import EditorialSerializerResponse
 from editoriales.serializers import EditorialSerializerRequest
-
+from rest_framework.pagination import PageNumberPagination
 # Create your views here.
 
 @api_view(['GET','POST'])
 def editoriales(request):
 
     if request.method == 'GET':
+        paginador = PageNumberPagination()
+        paginador.page_size = 5 
         editoriales = Editorial.objects.all()
-        serializer = EditorialSerializerResponse(editoriales,many=True)
-        return Response(serializer.data)
+        resultado_pagina = paginador.paginate_queryset(editoriales, request)
+        serializer = EditorialSerializerResponse(resultado_pagina, many=True)
+        return paginador.get_paginated_response(serializer.data)
 
     if request.method == 'POST':
         serializer = EditorialSerializerResponse(data=request.data)

@@ -30,3 +30,11 @@
 ### Para instalar django rest framework
 
 - pip install djangorestframework
+
+### Para instalar todas las dependencias del proyecto
+
+- pip install -r requirements.txt
+
+### Para generar el archivo requirements.txt
+
+- pip freeze > requirements.txt

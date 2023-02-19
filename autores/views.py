@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view
 from autores.models import Autor
 from autores.serializers import AutorSerializerResponse
 from autores.serializers import AutorSerializerRequest
+from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 
@@ -10,9 +11,12 @@ from autores.serializers import AutorSerializerRequest
 def autores(request):
 
     if request.method == 'GET':
+        paginador = PageNumberPagination()
+        paginador.page_size = 5
         autores = Autor.objects.all()
-        serializer = AutorSerializerResponse(autores,many=True)
-        return Response(serializer.data)
+        resultado_pagina = paginador.paginate_queryset(autores,request)
+        serializer = AutorSerializerResponse(resultado_pagina,many=True)
+        return paginador.get_paginated_response(serializer.data)
 
     if request.method == 'POST':
         serializer = AutorSerializerResponse(data=request.data)

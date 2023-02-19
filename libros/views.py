@@ -3,15 +3,20 @@ from rest_framework.decorators import api_view
 from libros.models import Libro
 from libros.serializers import LibroSerializerResponse
 from libros.serializers import LibroSerializersRequest 
+from rest_framework.pagination import PageNumberPagination
+
 # Create your views here.
 
 @api_view(['GET','POST'])
 def libros(request):
     
     if request.method == 'GET':
+        paginador = PageNumberPagination()
+        paginador.page_size = 5
         libros = Libro.objects.all()
-        serializer = LibroSerializerResponse(libros,many=True)
-        return Response(serializer.data)
+        resultado_pagina = paginador.paginate_queryset(libros,request)
+        serializer = LibroSerializerResponse(resultado_pagina,many=True)
+        return paginador.get_paginated_response(serializer.data)
     
     if request.method == 'POST':
         serializer = LibroSerializerResponse(data=request.data)

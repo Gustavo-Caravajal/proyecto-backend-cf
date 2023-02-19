@@ -20,8 +20,8 @@ class LibroSerializerResponse(serializers.Serializer):
     idioma = serializers.CharField()
     autor_id = serializers.IntegerField()
     editorial_id = serializers.IntegerField()
-    autor = AutorSerializer(read_only=True)
-    editorial = EditorialSerializer(read_only=True)
+    autor = AutorSerializer(many=False,read_only=True)
+    editorial = EditorialSerializer(many=False,read_only=True)
 
 
 class LibroSerializersRequest(serializers.Serializer):
