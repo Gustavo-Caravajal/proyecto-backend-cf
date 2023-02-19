@@ -26,6 +26,6 @@ urlpatterns = [
     path('api/v3/libros',include('libros.urls')),
     path('api/v4/autores',include('autores.urls')),
     path('api/v4/editoriales',include('editoriales.urls')),
-    path('api/v4/libros',include('libros.urls')),
+    path('api/v4/libros',include('libros.Api.v4.urls')),
     path('api/v4/generos',include('generos.urls')),
 ]
