@@ -15,10 +15,10 @@ Including another URLconf
 """
 
 from django.urls import path
-from generos.views import generos
-from generos.views import detallar_generos
+from generos.views import genres
+from generos.views import detail_genres
 
 urlpatterns = [
-    path('', generos),
-    path('/<int:pk>', detallar_generos),
+    path('', genres),
+    path('/<int:pk>', detail_genres),
 ]

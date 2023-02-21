@@ -1,10 +1,10 @@
 from rest_framework import serializers
 
-class GeneroSerializerResponse(serializers.Serializer):
+class GenreSerializerResponse(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    nombre = serializers.CharField()
+    name = serializers.CharField()
     
 
-class GeneroSerializerRequest(serializers.Serializer):
-    nombre = serializers.CharField()
+class GenreSerializerRequest(serializers.Serializer):
+    name = serializers.CharField()
     

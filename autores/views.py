@@ -1,55 +1,55 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from autores.models import Autor
-from autores.serializers import AutorSerializerResponse
-from autores.serializers import AutorSerializerRequest
+from autores.models import Author
+from autores.serializers import AuthorSerializerResponse
+from autores.serializers import AuthorSerializerRequest
 from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 
 @api_view(['GET','POST'])
-def autores(request):
+def authors(request):
 
     if request.method == 'GET':
-        paginador = PageNumberPagination()
-        paginador.page_size = 5
-        autores = Autor.objects.all()
-        resultado_pagina = paginador.paginate_queryset(autores,request)
-        serializer = AutorSerializerResponse(resultado_pagina,many=True)
-        return paginador.get_paginated_response(serializer.data)
+        paginator = PageNumberPagination()
+        paginator.page_size = 5
+        authors = Author.objects.all()
+        resultado_pagina = paginator.paginate_queryset(authors,request)
+        serializer = AuthorSerializerResponse(resultado_pagina,many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     if request.method == 'POST':
-        serializer = AutorSerializerResponse(data=request.data)
+        serializer = AuthorSerializerResponse(data=request.data)
 
         if serializer.is_valid():
-            Autor.objects.create(
-                nombre_completo = request.data['nombre_completo'],
-                año_nacimiento = request.data['año_nacimiento'],
-                pais_origen = request.data['pais_origen'],
-                años_experiencia = request.data['años_experiencia']
+            Author.objects.create(
+                full_name = request.data['full_name'],
+                birth_year = request.data['birth_year'],
+                country_origin  = request.data['country_origin'],
+                years_experience = request.data['years_experience']
             )
             return Response(serializer.data)
 
 @api_view(['GET','PUT','DELETE'])
-def detallar_autores(request,pk):
-    autor = Autor.objects.get(pk=pk)
+def detail_authors(request,pk):
+    author = Author.objects.get(pk=pk)
     if request.method == 'GET':
         ...
 
     if request.method == 'PUT':
-        serializer = AutorSerializerRequest(data=request.data)
+        serializer = AuthorSerializerRequest(data=request.data)
         if serializer.is_valid():
-            autor.nombre_completo = request.data['nombre_completo']
-            autor.año_nacimiento = request.data['año_nacimiento']
-            autor.pais_origen = request.data['pais_origen']
-            autor.años_experiencia = request.data['años_experiencia']
-            autor.save()
+            author.full_name = request.data['full_name']
+            author.birth_year = request.data['birth_year']
+            author.country_origin = request.data['country_origin']
+            author.years_experience = request.data['years_experience']
+            author.save()
     
     if request.method == 'DELETE':
-        serializer = AutorSerializerResponse(data=request.data)
-        autor.delete()
-        return Response("AUTOR ELIMINADO")
+        serializer = AuthorSerializerResponse(data=request.data)
+        author.delete()
+        return Response("DELETED AUTHOR")
 
-    serializer = AutorSerializerResponse(autor)
+    serializer = AuthorSerializerResponse(author)
     
     return Response(serializer.data)

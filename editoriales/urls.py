@@ -15,10 +15,10 @@ Including another URLconf
 """
 
 from django.urls import path
-from editoriales.views import editoriales
-from editoriales.views import detallar_editoriales
+from editoriales.views import publishers
+from editoriales.views import detail_publishers
 
 urlpatterns = [
-    path('', editoriales),
-    path('/<int:pk>', detallar_editoriales),
+    path('', publishers),
+    path('/<int:pk>', detail_publishers),
 ]

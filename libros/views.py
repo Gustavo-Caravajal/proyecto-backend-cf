@@ -1,61 +1,61 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from libros.models import Libro
-from libros.models import Libro_v4
-from libros.serializers import LibroSerializerResponse
-from libros.serializers import LibroSerializersRequest 
-from libros.serializers import LibroSerializerResponse_v4
+from libros.models import Book
+from libros.models import BookV4
+from libros.serializers import BookSerializerResponse
+from libros.serializers import BookSerializersRequest 
+from libros.serializers import BookSerializerResponsev4
 from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 
 @api_view(['GET','POST'])
-def libros(request):
+def books(request):
     
     if request.method == 'GET':
-        paginador = PageNumberPagination()
-        paginador.page_size = 5
-        libros = Libro.objects.all()
-        resultado_pagina = paginador.paginate_queryset(libros,request)
-        serializer = LibroSerializerResponse(resultado_pagina,many=True)
-        return paginador.get_paginated_response(serializer.data)
+        paginator = PageNumberPagination()
+        paginator.page_size = 5
+        books = Book.objects.all()
+        result_page = paginator.paginate_queryset(books,request)
+        serializer = BookSerializerResponse(result_page,many=True)
+        return paginator.get_paginated_response(serializer.data)
     
     if request.method == 'POST':
-        serializer = LibroSerializerResponse(data=request.data)
+        serializer = BookSerializerResponse(data=request.data)
 
         if serializer.is_valid():
-            Libro.objects.create(
-                titulo = request.data['titulo'],
-                año_publicacion = request.data['año_publicacion'],
-                n_paginas = request.data['n_paginas'],
-                idioma = request.data['idioma'],
-                autor_id = request.data['autor_id'],
-                editorial_id = request.data['editorial_id']     
+            Book.objects.create(
+                title = request.data['title'],
+                publication_year = request.data['publication_year'],
+                n_pages = request.data['n_pages'],
+                languaje = request.data['languaje'],
+                author_id = request.data['author_id'],
+                publisher_id = request.data['publisher_id']     
             )
             return Response(serializer.data)
 
 
 @api_view(['GET','PUT','DELETE'])
-def detallar_libros(request,pk):
-    libro = Libro.objects.get(pk=pk)
+def detail_books(request,pk):
+    book = Book.objects.get(pk=pk)
     if request.method == 'GET':
         ...
 
     if request.method == 'PUT':
-        serializer = LibroSerializersRequest(data=request.data)
+        serializer = BookSerializersRequest(data=request.data)
         if serializer.is_valid():
-            libro.titulo = request.data['titulo']
-            libro.año_publicacion = request.data['año_publicacion']
-            libro.n_paginas = request.data['n_paginas']
-            libro.idioma = request.data['idioma']
-            libro.save()
+            book.title = request.data['title']
+            book.publication_year = request.data['publication_year']
+            book.n_pages = request.data['n_pages']
+            book.languaje = request.data['languaje']
+            book.save()
     
     if request.method == 'DELETE':
-        serializer = LibroSerializerResponse(data=request.data)
-        libro.delete()
-        return Response("LIBRO ELIMINADO")
+        serializer = BookSerializerResponse(data=request.data)
+        book.delete()
+        return Response("DELETED BOOK")
     
-    serializer = LibroSerializerResponse(libro)
+    serializer = BookSerializerResponse(book)
 
     return Response(serializer.data)   
 
@@ -64,52 +64,52 @@ def detallar_libros(request,pk):
 #libro api version 4
 
 @api_view(['GET','POST'])
-def libros_v4(request):
+def books_v4(request):
     
     if request.method == 'GET':
-        paginador = PageNumberPagination()
-        paginador.page_size = 5
-        libros = Libro_v4.objects.all()
-        resultado_pagina = paginador.paginate_queryset(libros,request)
-        serializer = LibroSerializerResponse_v4(resultado_pagina,many=True)
-        return paginador.get_paginated_response(serializer.data)
+        paginator = PageNumberPagination()
+        paginator.page_size = 5
+        books = BookV4.objects.all()
+        result_page = paginator.paginate_queryset(books,request)
+        serializer = BookSerializerResponsev4(result_page,many=True)
+        return paginator.get_paginated_response(serializer.data)
     
     if request.method == 'POST':
-        serializer = LibroSerializerResponse_v4(data=request.data)
+        serializer = BookSerializerResponsev4(data=request.data)
 
         if serializer.is_valid():
-            Libro_v4.objects.create(
-                titulo = request.data['titulo'],
-                año_publicacion = request.data['año_publicacion'],
-                n_paginas = request.data['n_paginas'],
-                idioma = request.data['idioma'],
-                autor_id = request.data['autor_id'],
-                editorial_id = request.data['editorial_id'],
-                genero_id = request.data['genero_id']    
+            BookV4.objects.create(
+                title = request.data['title'],
+                publication_year = request.data['publication_year'],
+                n_pages = request.data['n_pages'],
+                languaje = request.data['languaje'],
+                author_id = request.data['author_id'],
+                publisher_id = request.data['publisher_id'],
+                genre_id = request.data['genre_id']    
             )
             return Response(serializer.data)
 
 
 @api_view(['GET','PUT','DELETE'])
-def detallar_libros_v4(request,pk):
-    libro = Libro_v4.objects.get(pk=pk)
+def detail_books_v4(request,pk):
+    book = BookV4.objects.get(pk=pk)
     if request.method == 'GET':
         ...
 
     if request.method == 'PUT':
-        serializer = LibroSerializersRequest(data=request.data)
+        serializer = BookSerializersRequest(data=request.data)
         if serializer.is_valid():
-            libro.titulo = request.data['titulo']
-            libro.año_publicacion = request.data['año_publicacion']
-            libro.n_paginas = request.data['n_paginas']
-            libro.idioma = request.data['idioma']
-            libro.save()
+            book.title = request.data['title']
+            book.publication_year = request.data['publication_year']
+            book.n_pages = request.data['n_pages']
+            book.languaje = request.data['languaje']
+            book.save()
     
     if request.method == 'DELETE':
-        serializer = LibroSerializerResponse_v4(data=request.data)
-        libro.delete()
+        serializer = BookSerializerResponsev4(data=request.data)
+        book.delete()
         return Response("LIBRO ELIMINADO")
     
-    serializer = LibroSerializerResponse_v4(libro)
+    serializer = BookSerializerResponsev4(book)
 
     return Response(serializer.data)   

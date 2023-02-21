@@ -1,52 +1,52 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from editoriales.models import Editorial
-from editoriales.serializers import EditorialSerializerResponse
-from editoriales.serializers import EditorialSerializerRequest
+from editoriales.models import Publisher
+from editoriales.serializers import PublisherSerializerResponse
+from editoriales.serializers import PublisherSerializerRequest
 from rest_framework.pagination import PageNumberPagination
 # Create your views here.
 
 @api_view(['GET','POST'])
-def editoriales(request):
+def publishers(request):
 
     if request.method == 'GET':
-        paginador = PageNumberPagination()
-        paginador.page_size = 5 
-        editoriales = Editorial.objects.all()
-        resultado_pagina = paginador.paginate_queryset(editoriales, request)
-        serializer = EditorialSerializerResponse(resultado_pagina, many=True)
-        return paginador.get_paginated_response(serializer.data)
+        paginator = PageNumberPagination()
+        paginator.page_size = 5 
+        publishers = Publisher.objects.all()
+        result_page = paginator.paginate_queryset(publishers, request)
+        serializer = PublisherSerializerResponse(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     if request.method == 'POST':
-        serializer = EditorialSerializerResponse(data=request.data)
+        serializer = PublisherSerializerResponse(data=request.data)
 
         if serializer.is_valid():
-            Editorial.objects.create(
-                nombre = request.data['nombre'],
-                año_fundacion = request.data['año_fundacion']
+            Publisher.objects.create(
+                name = request.data['name'],
+                founded_year = request.data['founded_year']
             )
             return Response(serializer.data)
 
 @api_view(['GET','PUT','DELETE'])
-def detallar_editoriales(request,pk):
-    editorial = Editorial.objects.get(pk=pk)
+def detail_publishers(request,pk):
+    publisher = Publisher.objects.get(pk=pk)
 
     if request.method == 'GET':
         ...
 
     if request.method == 'PUT':
-        serializer = EditorialSerializerRequest(data=request.data)
+        serializer = PublisherSerializerRequest(data=request.data)
         
         if serializer.is_valid():
-            editorial.nombre = request.data['nombre']
-            editorial.año_fundacion = request.data['año_fundacion']
-            editorial.save()
+            publisher.name = request.data['name']
+            publisher.founded_year = request.data['founded_year']
+            publisher.save()
     
     if request.method == 'DELETE':
-        serializer = EditorialSerializerResponse(data=request.data)
-        editorial.delete()
-        return Response("EDITORIAL ELIMINADA")
+        serializer = PublisherSerializerResponse(data=request.data)
+        publisher.delete()
+        return Response("DELETED PUBLISHER")
 
-    serializer = EditorialSerializerResponse(editorial)
+    serializer = PublisherSerializerResponse(publisher)
     
     return Response(serializer.data)

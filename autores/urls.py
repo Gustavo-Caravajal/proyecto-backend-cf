@@ -15,10 +15,10 @@ Including another URLconf
 """
 
 from django.urls import path
-from autores.views import autores
-from autores.views import detallar_autores
+from autores.views import authors
+from autores.views import detail_authors
 
 urlpatterns = [
-    path('', autores),
-    path('/<int:pk>', detallar_autores),
+    path('', authors),
+    path('/<int:pk>', detail_authors),
 ]

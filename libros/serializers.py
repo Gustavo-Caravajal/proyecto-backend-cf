@@ -1,50 +1,50 @@
 from rest_framework import serializers
-from autores.models import Autor
-from editoriales.models import Editorial
-from generos.models import Genero
-class AutorSerializer(serializers.ModelSerializer):
+from autores.models import Author
+from editoriales.models import Publisher
+from generos.models import Genre
+class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Autor
-        fields = ['id','nombre_completo','año_nacimiento','pais_origen','años_experiencia']
+        model = Author
+        fields = ['id','full_name','birth_year','country_origin','years_experience']
 
-class EditorialSerializer(serializers.ModelSerializer):
+class PublisherSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Editorial
-        fields = ['id','nombre','año_fundacion']
+        model = Publisher
+        fields = ['id','name','founded_year']
 
-class GeneroSerializer(serializers.ModelSerializer):
+class GenreSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Genero
-        fields = ['id','nombre']
+        model = Genre
+        fields = ['id','name']
 
 
 
-class LibroSerializerResponse(serializers.Serializer):
+class BookSerializerResponse(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    titulo = serializers.CharField()
-    año_publicacion = serializers.IntegerField()
-    n_paginas = serializers.IntegerField()
-    idioma = serializers.CharField()
-    autor_id = serializers.IntegerField()
-    editorial_id = serializers.IntegerField()
-    autor = AutorSerializer(many=False,read_only=True)
-    editorial = EditorialSerializer(many=False,read_only=True)
+    title = serializers.CharField()
+    publication_year = serializers.IntegerField()
+    n_pages = serializers.IntegerField()
+    languaje = serializers.CharField()
+    author_id = serializers.IntegerField()
+    publisher_id = serializers.IntegerField()
+    author = AuthorSerializer(many=False,read_only=True)
+    publisher = PublisherSerializer(many=False,read_only=True)
 
-class LibroSerializerResponse_v4(serializers.Serializer):
+class BookSerializerResponsev4(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
-    titulo = serializers.CharField()
-    año_publicacion = serializers.IntegerField()
-    n_paginas = serializers.IntegerField()
-    idioma = serializers.CharField()
-    autor_id = serializers.IntegerField()
-    editorial_id = serializers.IntegerField()
-    genero_id = serializers.IntegerField()
-    autor = AutorSerializer(many=False,read_only=True)
-    editorial = EditorialSerializer(many=False,read_only=True)
-    genero = GeneroSerializer(many=False,read_only=True)
+    title = serializers.CharField()
+    publication_year = serializers.IntegerField()
+    n_pages = serializers.IntegerField()
+    languaje = serializers.CharField()
+    author_id = serializers.IntegerField()
+    publisher_id = serializers.IntegerField()
+    genre_id = serializers.IntegerField()
+    author = AuthorSerializer(many=False,read_only=True)
+    publisher = PublisherSerializer(many=False,read_only=True)
+    genre = GenreSerializer(many=False,read_only=True)
 
-class LibroSerializersRequest(serializers.Serializer):
-    titulo = serializers.CharField()
-    año_publicacion = serializers.IntegerField()
-    n_paginas = serializers.IntegerField()
-    idioma = serializers.CharField()
+class BookSerializersRequest(serializers.Serializer):
+    title = serializers.CharField()
+    publication_year = serializers.IntegerField()
+    n_pages = serializers.IntegerField()
+    languaje = serializers.CharField()
