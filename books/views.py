@@ -108,7 +108,7 @@ def detail_books_v4(request,pk):
     if request.method == 'DELETE':
         serializer = BookSerializerResponsev4(data=request.data)
         book.delete()
-        return Response("LIBRO ELIMINADO")
+        return Response("DELETED BOOK")
     
     serializer = BookSerializerResponsev4(book)
 
