@@ -19,6 +19,6 @@ from authors.views import authors
 from authors.views import detail_authors
 
 urlpatterns = [
-    path('', authors),
-    path('/<int:pk>', detail_authors),
+    path('/', authors,name='authors'),
+    path('/<int:pk>', detail_authors,name='detail_authors'),
 ]
