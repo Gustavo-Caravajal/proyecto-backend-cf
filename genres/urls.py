@@ -19,6 +19,6 @@ from genres.views import genres
 from genres.views import detail_genres
 
 urlpatterns = [
-    path('', genres),
-    path('/<int:pk>', detail_genres),
+    path('/', genres,name='genres'),
+    path('/<int:pk>', detail_genres,name='detail_genres'),
 ]

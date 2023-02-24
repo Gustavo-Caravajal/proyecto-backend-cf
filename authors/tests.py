@@ -1,4 +1,3 @@
-
 from rest_framework.test import APIClient
 from django.test import TestCase
 from rest_framework import status
@@ -11,8 +10,6 @@ from django.urls import reverse
 class AuthorsTestCaseGet(TestCase):
     def setUp(self):
         self.client = APIClient()
-
-      
         Author.objects.create(full_name='Autor 1', birth_year=1980, country_origin='México', years_experience=10)
         
     

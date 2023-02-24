@@ -44,5 +44,5 @@ def detail_genres(request,pk):
         serializer = GenreSerializerResponse(data=request.data)
         genre.delete()
         return Response('DELETED GENRE')
-
+    serializer = GenreSerializerResponse(genre)
     return Response(serializer.data)

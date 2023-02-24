@@ -19,6 +19,6 @@ from publishers.views import publishers
 from publishers.views import detail_publishers
 
 urlpatterns = [
-    path('', publishers),
-    path('/<int:pk>', detail_publishers),
+    path('/', publishers,name='publishers'),
+    path('/<int:pk>', detail_publishers,name='detail_publishers'),
 ]
