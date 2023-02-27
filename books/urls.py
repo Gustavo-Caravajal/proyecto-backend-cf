@@ -18,6 +18,6 @@ from books.views import books
 from books.views import detail_books
 
 urlpatterns = [
-    path('', books),
-    path('/<int:pk>', detail_books),
+    path('/', books,name="books"),
+    path('/<int:pk>', detail_books,name="detail_books"),
 ]
