@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import pymysql
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -80,17 +80,15 @@ WSGI_APPLICATION = 'library.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-pymysql.version_info = (1, 4, 2, 'final', 0 )
-pymysql.install_as_MySQLdb()
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'library',
-        'USER': 'root',
-        'PASSWORD': '',
+        'USER': 'postgres',
+        'PASSWORD': '43178077',
         'HOST': 'localhost',
-        'PORT': ''
+        'PORT': '5432'
     }
 }
 

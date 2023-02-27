@@ -25,7 +25,7 @@
 
 ### Para conectar a la base de datos:
 
-- pip install pymysql
+- pip install psycopg2-binary
 
 ### Para instalar django rest framework
 
