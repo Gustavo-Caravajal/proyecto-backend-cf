@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API BOOKS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #333;
+           color: #fff;
+        }
+        .api-version {
+            background-color: #444;
+            padding: 20px;
+            margin-bottom: 20px;
+            }
+        .api-version h2 {
+            color: #fff;
+            }
+        .api-version p {
+            margin-bottom: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container ">
+        <h1>API BOOKS</h1>
+
+        <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="api-version">
+                <h2>Version 1</h2>
+                <p>solo permite agregar autores, estos se agregan con el siguiente json de ejemplo:</p>
+                <p>{"full_name": "nombre",
+                "birth_year": 2000,
+                "country_origin": "pais",
+                "years_experience": 15}
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br> 
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <div class="btn-group-vertical">
+                    <a href="https://library-5ei2.onrender.com/api/v1/authors/" class="btn btn-primary btn-lg">autores</a>
+                    
+          </div>
+        </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="api-version">
+                <h2>Version 2</h2>
+                <p>ademas de autores, permite agregar editoriales, estas ultimas se agregan con el siguiente json de ejemplo:</p>
+                <p>{"name": "editorial",
+                    "founded_year": 1950}
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br> 
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <p></p>
+                <div class="btn-group-vertical">
+                    <a href="https://library-5ei2.onrender.com/api/v2/authors/" class="btn btn-primary btn-lg">autores</a>
+                    <a href="https://library-5ei2.onrender.com/api/v2/publishers/" class="btn btn-primary btn-lg">editoriales</a>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="api-version">
+                <h2>Version 3</h2>
+                <p>ademas de autores y editoriales, permite agregar libros, estos ultimos se agregan con el siguiente json de ejemplo:</p>
+                <p>{"title": "libro",
+                    "publication_year": 2000,
+                    "n_pages": 500,</p>
+                <p> "languaje": "idioma",</p>
+                <p> "author_id": 1,</p>
+                <p> "publisher_id": 1}
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </p>
+                <div class="btn-group-vertical">
+                    <a href="https://library-5ei2.onrender.com/api/v3/authors/" class="btn btn-primary btn-lg">autores</a>
+                    <a href="https://library-5ei2.onrender.com/api/v3/publishers/" class="btn btn-primary btn-lg">editoriales</a>
+                    <a href="https://library-5ei2.onrender.com/api/v3/books/" class="btn btn-primary btn-lg">libros</a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="api-version">
+                <h2>Version 4</h2>
+                <p>ademas de autores, editoriales y libros, permite agregar generos, estos ultimos se agregan con el siguiente json de ejemplo:</p>
+                <p>{"name": "genero"}</p>
+                <p>y el libro en esta version se agrega con el siguiente json:
+                <p>{"title": "libro",
+                    "publication_year": 2000,
+                    "n_pages": 500,</p>
+                <p> "languaje": "idioma",</p>
+                <p> "author_id": 1,</p>
+                <p> "publisher_id": 1,</p>
+                <p> "genre_id": 1}
+                    <br>
+                    <br>
+                </p>
+                </p>
+                <div class="btn-group-vertical">
+                    <a href="https://library-5ei2.onrender.com/api/v4/authors/" class="btn btn-primary btn-lg">autores</a>
+                    <a href="https://library-5ei2.onrender.com/api/v4/publishers/" class="btn btn-primary btn-lg">editoriales</a>
+                    <a href="https://library-5ei2.onrender.com/api/v4/books" class="btn btn-primary btn-lg">libros</a>
+                    <a href="https://library-5ei2.onrender.com/api/v4/genres/" class="btn btn-primary btn-lg">generos</a>
+                </div>
+            </div>
+        </div>
+        
+	</div>
+</div>
+
+	<!-- Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
